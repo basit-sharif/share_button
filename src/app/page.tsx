@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -14,23 +14,28 @@ import {
 } from 'next-share';
 
 export default function Home() {
+  const [linkToShare, setLinkToShare] = useState<any>()
+  useEffect(() => {
+    setLinkToShare(window.location.href)
+  }, [])
+
   return (
     <div>
       <h1>Social Share - GeeksforGeeks</h1>
       <FacebookShareButton
-        url={window.location.href} >
+        url={linkToShare} >
         <FacebookIcon size={32} round />
       </FacebookShareButton>
       <RedditShareButton
-        url={window.location.href} >
+        url={linkToShare} >
         <RedditIcon size={32} round />
       </RedditShareButton>
       <WhatsappShareButton
-        url={window.location.href} >
+        url={linkToShare} >
         <WhatsappIcon size={32} round />
       </WhatsappShareButton>
       <LinkedinShareButton
-        url={window.location.href} >
+        url={linkToShare} >
         <LinkedinIcon size={32} round />
       </LinkedinShareButton>
     </div>
